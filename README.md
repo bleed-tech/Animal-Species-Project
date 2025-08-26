@@ -1,32 +1,108 @@
-# Animal Species Classification (Animals-10)
+🐾 Animal Species Detection (Animals-10 Dataset)
 
-A TensorFlow/Keras project comparing **ZFNet**, **VGG16** (transfer learning), and **GoogLeNet/Inception** (transfer learning) to classify images from the **Animals-10** dataset. The dataset has ~28,000 labeled images across **10 classes**. :contentReference[oaicite:2]{index=2}
+This project applies deep learning models to classify animal species from images.
+We implemented and compared three architectures:
 
-## Results (from the project report)
-| Model        | Train Acc | Val Acc | Val Loss |
-|--------------|-----------:|--------:|---------:|
-| ZFNet        | 0.84       | 0.74    | 0.94     |
-| VGG16        | 0.95       | 0.88    | 0.39     |
-| GoogLeNet    | 0.98       | 0.96    | 0.1331   |
+ZFNet (custom CNN)
 
-Numbers above are summarized from `FINAL.SSA_REPORT.pdf`. :contentReference[oaicite:3]{index=3}
+VGG16 (transfer learning)
 
-## Repository Contents
-- `PROJECT_1(ANIMAL_SPECIES)_GROUP_5_.ipynb` — full training notebook (data download, preprocessing, training, evaluation, prediction)
-- `FINAL.SSA_REPORT.pdf` — report with methods, experiments, and analysis
-- `assets/` — (optional) plots/screenshots
-- `.gitignore` — ignores big/temporary files
-- `README.md` — this file
+GoogLeNet / InceptionV3 (transfer learning)
 
-## How to Run (Google Colab)
-1. Open the notebook in Colab (File ➜ Open in Colab).
-2. Set up Kaggle API in Colab to download Animals-10, then unzip:
-```python
-import os, shutil, zipfile, subprocess, json
-# upload kaggle.json or use your Kaggle API token
-# then:
-!mkdir -p /root/.kaggle
-!cp kaggle.json /root/.kaggle/kaggle.json
-!chmod 600 /root/.kaggle/kaggle.json
-!kaggle datasets download -d alessiocorrado99/animals10
-!unzip -q animals10.zip -d /content/extracted_data
+The dataset used is Animals-10
+, which contains ~28,000 labeled images across 10 animal classes.
+
+📂 Repository Structure
+animal-species-detection/
+│── PROJECT_1(ANIMAL_SPECIES)GROUP_5.ipynb   # Jupyter notebook (full workflow)
+│── FINAL.SSA_REPORT.pdf                     # Final academic report
+│── src/                                     # Clean Python scripts
+│   ├── train_models.py                      # Model training
+│   ├── predict.py                           # Prediction pipeline
+│   └── preprocess.py                        # Preprocessing & dataset handling
+│── dataset/
+│   └── download_dataset.py                  # Script to download Animals-10 dataset
+│── requirements.txt                         # Project dependencies
+│── README.md                                # Main documentation
+│── .gitignore                               # Ignore unnecessary files
+
+📊 Results (from the report)
+Model	Train Acc	Val Acc	Val Loss
+ZFNet	0.84	0.74	0.94
+VGG16	0.95	0.88	0.39
+GoogLeNet	0.98	0.96	0.1331
+
+👉 GoogLeNet achieved the best performance with ~96% validation accuracy.
+Details and analysis are provided in FINAL.SSA_REPORT.pdf
+.
+
+⚙️ Installation
+
+Clone the repo:
+
+git clone https://github.com/<your-username>/animal-species-detection.git
+cd animal-species-detection
+
+
+Install dependencies:
+
+pip install -r requirements.txt
+
+📥 Dataset
+
+This project uses the Animals-10 dataset from Kaggle.
+
+Install Kaggle CLI:
+
+pip install kaggle
+
+
+Place your kaggle.json API key in ~/.kaggle/.
+
+Run the dataset download script:
+
+python dataset/download_dataset.py
+
+
+➡️ Images will be extracted into: dataset/raw-img/
+
+🚀 Usage
+1. Train Models
+
+Example: train GoogLeNet
+
+python src/train_models.py --model googlenet
+
+
+This will:
+
+Load and preprocess the dataset (preprocess.py)
+
+Train the selected model
+
+Save the trained weights to models/
+
+2. Predict New Images
+python src/predict.py --img_path path/to/test_image.jpg
+
+
+Output example:
+
+Predicted Species: cat (98.3% confidence)
+
+📒 Notebook
+
+PROJECT_1(ANIMAL_SPECIES)GROUP_5.ipynb:
+Full end-to-end workflow with preprocessing, training, evaluation, and predictions.
+Recommended for experimentation and visualization.
+
+📑 Report
+
+FINAL.SSA_REPORT.pdf:
+Academic-style report with methodology, experiments, results, and conclusions.
+
+🙏 Acknowledgments
+
+Dataset: Animals-10 by Alessio Corrado (Kaggle)
+
+Models: Keras/TensorFlow implementations of ZFNet, VGG16, and InceptionV3
