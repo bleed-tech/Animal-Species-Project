@@ -1,4 +1,4 @@
-🐾 Animal Species Detection (Animals-10 Dataset)
+# **🐾 Animal Species Detection (Animals-10 Dataset)**
 
 A deep learning project for classifying animal species from images using three architectures:
 ZFNet (custom CNN)
